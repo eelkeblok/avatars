@@ -96,14 +96,12 @@ class AvatarGeneratorPreviewWidget extends OptionsButtonsWidget {
     /** @var \Drupal\avatars\AvatarManager $avatar_manager */
     $avatar_manager = \Drupal::service('avatars.avatar_manager');
 
-    $options = [];
     $thumbs = [];
 
     foreach ($avatar_manager->refreshAllAvatars($user) as $preview) {
       if ($file = $preview->getAvatar()) {
         $instance_id = $preview->getAvatarGeneratorId();
         $avatar_generator = AvatarGenerator::load($instance_id);
-        $options[$instance_id] = $avatar_generator->label();
         $thumbs[$instance_id] = [
           'label' => $avatar_generator->label(),
           'uri' => $file->getFileUri(),
