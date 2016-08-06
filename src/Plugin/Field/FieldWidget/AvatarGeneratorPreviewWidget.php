@@ -19,7 +19,7 @@ use Drupal\avatars\Entity\AvatarGenerator;
  *   id = "avatars_generator_preview",
  *   label = @Translation("Avatar Generator Previews"),
  *   field_types = {
- *     "list_string",
+ *     "avatar",
  *   },
  *   multiple_values = TRUE
  * )
