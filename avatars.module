@@ -14,16 +14,10 @@ use Drupal\user\UserInterface;
 /**
  * ID of a `picture` field attached to a user entity.
  *
- * The field is the target for the active avatar preference for the user.
+ * This is the standard user image file field that will be used by the 'User'
+ * AvatarGenerator.
  */
-const AK_FIELD_PICTURE_ACTIVE = 'user_picture';
-
-/**
- * ID of a `picture` field attached to a user entity.
- *
- * The field has a reference to the last picture the user manually updated.
- */
-const AK_FIELD_PICTURE_USER = 'avatars_user_picture';
+const AK_FIELD_PICTURE_USER = 'user_picture';
 
 /**
  * ID of a `list_string` field attached to a user entity.
