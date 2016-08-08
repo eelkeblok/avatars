@@ -6,6 +6,7 @@ use Drupal\Component\Utility\Unicode;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\TypedData\DataDefinition;
+use Drupal\avatars\Entity\AvatarGenerator;
 use Drupal\options\Plugin\Field\FieldType\ListStringItem;
 
 /**
@@ -86,17 +87,17 @@ class AvatarItem extends ListStringItem {
    * {@inheritdoc}
    */
   public function getSettableOptions(AccountInterface $account = NULL) {
-    /** @var \Drupal\avatars\AvatarManager $avatarManager */
-    $avatarManager = \Drupal::service('avatars.avatar_manager');
-
     $options = [];
 
-    /** @var \Drupal\avatars\AvatarGeneratorInterface[] $generators */
-    $generators = $avatarManager->getAvatarGeneratorsForUser($account);
-    
-    foreach ($generators as $generator) {
-      $pluginDefinition = $generator->getPlugin()->getPluginDefinition();
-      $options[$pluginDefinition['id']] = $pluginDefinition['label'];
+    /** @var \Drupal\avatars\AvatarGeneratorInterface[] $instances */
+    $instances = AvatarGenerator::loadMultiple();
+    uasort($instances, '\Drupal\avatars\Entity\AvatarGenerator::sort');
+
+    foreach ($instances as $instance) {
+      $hasPermission = $account->hasPermission("avatars avatar_generator user " . $instance->id());
+      if ($instance->status() && $hasPermission) {
+        $options[$instance->id()] = $instance->label();
+      }
     }
 
     return $options;
