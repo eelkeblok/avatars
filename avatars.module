@@ -69,14 +69,16 @@ function avatars_cron() {
  */
 function avatars_entity_field_access($operation, FieldDefinitionInterface $field_definition, AccountInterface $account, FieldItemListInterface $items = NULL) {
   /** @var \Drupal\avatars\AvatarManager $avatar_manager */
-  $avatar_manager = \Drupal::service('avatars.avatar_manager');
+  // $avatar_manager = \Drupal::service('avatars.avatar_manager');
   /** @var \Drupal\field\Entity\FieldConfig $field_definition */
+  /*
   if ($field_definition->getName() == AK_FIELD_PICTURE_ACTIVE && $operation == 'view' && $field_definition->getTargetEntityTypeId() == 'user') {
     if ($items) {
       $user = $items->getEntity();
       $avatar_manager->syncAvatar($user);
     }
   }
+  */
   return AccessResult::neutral();
 }
 

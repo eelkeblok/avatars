@@ -99,6 +99,7 @@ class AvatarManager implements AvatarManagerInterface {
    * {@inheritdoc}
    */
   public function syncAvatar(UserInterface $user) {
+    /*
     $field_item_list = &$user->{AK_FIELD_PICTURE_ACTIVE};
     $file1 = isset($field_item_list->entity) ? $field_item_list->entity : NULL;
 
@@ -109,6 +110,7 @@ class AvatarManager implements AvatarManagerInterface {
       $user->{AK_FIELD_PICTURE_ACTIVE} = $file2;
       $user->save();
     }
+    */
   }
 
   /**

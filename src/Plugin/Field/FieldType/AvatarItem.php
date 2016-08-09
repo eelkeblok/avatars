@@ -12,6 +12,13 @@ use Drupal\options\Plugin\Field\FieldType\ListStringItem;
 /**
  * Plugin implementation of the 'list_string' field type.
  *
+ * We simply override the list_string field in order to keep things nicely
+ * separated in the UI.
+ *
+ * @todo Allow configuring a default image.
+ * The AvatarFormatter supports a default image, but it can't be configured
+ * right now.
+ *
  * @FieldType(
  *   id = "avatar",
  *   label = @Translation("Avatar"),
@@ -20,9 +27,6 @@ use Drupal\options\Plugin\Field\FieldType\ListStringItem;
  *   default_widget = "avatars_generator_preview",
  *   default_formatter = "avatar",
  * )
- *
- * We simply override the list_string field in order to keep things nicely
- * separated in the UI.
  */
 class AvatarItem extends ListStringItem {
 
